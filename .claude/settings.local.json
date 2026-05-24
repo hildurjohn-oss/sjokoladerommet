@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell($gitPaths = @\\(\"C:\\\\Program Files\\\\Git\\\\bin\\\\git.exe\", \"C:\\\\Program Files \\(x86\\)\\\\Git\\\\bin\\\\git.exe\", \"$env:LOCALAPPDATA\\\\Programs\\\\Git\\\\bin\\\\git.exe\"\\); foreach \\($p in $gitPaths\\) { if \\(Test-Path $p\\) { Write-Output \"Found: $p\" } })",
+      "PowerShell(winget list --name Git 2>$null)",
+      "PowerShell(winget install --id Git.Git -e --source winget --accept-package-agreements --accept-source-agreements --silent)"
+    ]
+  }
+}
