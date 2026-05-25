@@ -1,0 +1,12 @@
+/*
+Theme Name:  Sjokoladerommet
+Theme URI:   https://github.com/hildurjohn-oss/sjokoladerommet
+Description: Custom WordPress theme for Sjokoladerommet — håndlaget sjokolade, nybakt kake og kafé i Gravdal, Lofoten.
+Version:     1.0.0
+Author:      Sjokoladerommet
+Author URI:  https://sjokoladerommet.no
+Text Domain: sjokoladerommet
+Tags:        custom-menu, custom-colors, responsive-layout, one-column, two-columns
+*/
+
+/* Main styles are loaded via functions.php → assets/css/main.css */
