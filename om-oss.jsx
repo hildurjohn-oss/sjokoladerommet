@@ -16,7 +16,9 @@ function OmHero() {
           </div>
           <div style={{ position: 'relative' }}>
             <div style={{ maxWidth: 460, marginLeft: 'auto' }}>
-              <FotoSlot id="om-janett-portrett" label="Janett, portrett" aspect="3/4" radius={24} tone="krem" />
+              <div style={{ width: '100%', aspectRatio: '3/4', borderRadius: 24, overflow: 'hidden', flexShrink: 0 }}>
+                <img src="/assets/images/janett-haug-larsen.jpg" alt="Janett Haug Larsen" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              </div>
             </div>
             {/* "Grunnlegger" badge */}
             <div style={{
@@ -130,7 +132,9 @@ function Velvaere() {
               Se behandlingene →
             </a>
           </div>
-          <FotoSlot id="om-velvaere" label="velværerommet" aspect="4/5" radius={24} tone="fjord" />
+          <div style={{ width: '100%', aspectRatio: '4/5', borderRadius: 24, overflow: 'hidden', flexShrink: 0 }}>
+            <img src="/assets/images/sjokoladerommet-inne.jpg" alt="Velværerommet" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+          </div>
         </div>
       </div>
     </section>

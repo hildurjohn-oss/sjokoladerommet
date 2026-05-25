@@ -62,7 +62,9 @@ function HeroFullbleed() {
                 transform: 'rotate(2deg)',
                 borderRadius: 22, overflow: 'visible',
               }}>
-                <FotoSlot id="hero-fullbleed-janett" label="Janett ved disken" aspect="4/5" radius={22} tone="krem" />
+                <div style={{ width: '100%', aspectRatio: '4/5', borderRadius: 22, overflow: 'hidden', flexShrink: 0 }}>
+                  <img src="/assets/images/janett-haug-larsen.jpg" alt="Janett ved disken" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                </div>
               </div>
 
               {/* Overlapping konfekt photo — hidden on mobile */}
@@ -70,10 +72,9 @@ function HeroFullbleed() {
                 position: 'absolute', left: '-4%', bottom: '-6%', width: '54%',
                 transform: 'rotate(-4deg)', zIndex: 1,
               }}>
-                <FotoSlot
-                  id="hero-fullbleed-konfekt" label="konfekt" aspect="1" radius={16} tone="accent"
-                  style={{ boxShadow: '0 20px 50px -25px rgba(59,26,14,.4)' }}
-                />
+                <div style={{ width: '100%', aspectRatio: '1', borderRadius: 16, overflow: 'hidden', flexShrink: 0, boxShadow: '0 20px 50px -25px rgba(59,26,14,.4)' }}>
+                  <img src="/assets/images/sjokoladerommet%20hus.jpg" alt="Konfekt" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                </div>
               </div>
             </div>
           </div>
@@ -104,17 +105,18 @@ function HeroAsymmetric() {
           </div>
 
           <div style={{ position: 'relative' }}>
-            <FotoSlot id="hero-asym-disken" label="konfekt-disken" aspect="4/5" radius={28} tone="krem" />
+            <div style={{ width: '100%', aspectRatio: '4/5', borderRadius: 28, overflow: 'hidden', flexShrink: 0 }}>
+              <img src="/assets/images/sjokoladerommet-inne.jpg" alt="Disken" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+            </div>
 
             {/* Overlapping small photo — hidden on mobile */}
             <div className="overlay-hide" style={{
               position: 'absolute', left: '-8%', bottom: '-8%', width: '50%',
               transform: 'rotate(-4deg)', zIndex: 1,
             }}>
-              <FotoSlot
-                id="hero-asym-kaffe" label="kaffekopp" aspect="1" radius={20} tone="accent"
-                style={{ boxShadow: '0 20px 50px -25px rgba(59,26,14,.4)' }}
-              />
+              <div style={{ width: '100%', aspectRatio: '1', borderRadius: 20, overflow: 'hidden', flexShrink: 0, boxShadow: '0 20px 50px -25px rgba(59,26,14,.4)' }}>
+                <img src="/assets/images/sjokoladerommet-inne.jpg" alt="Kaffekopp" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              </div>
             </div>
 
             {/* "nybakt" badge — hidden on mobile */}
@@ -157,12 +159,15 @@ function HeroCentered() {
 
         {/* Photo trio */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 18, marginTop: 56 }}>
-          <FotoSlot id="hero-cent-konfekt" label="konfekt" aspect="3/4" radius={18} tone="accent"
-            style={{ transform: 'rotate(-2deg)' }} />
-          <FotoSlot id="hero-cent-kaffe" label="kaffe" aspect="3/4" radius={18} tone="fjord"
-            style={{ transform: 'translateY(-12px)' }} />
-          <FotoSlot id="hero-cent-kake" label="kake" aspect="3/4" radius={18} tone="krem"
-            style={{ transform: 'rotate(2deg)' }} />
+          <div style={{ width: '100%', aspectRatio: '3/4', borderRadius: 18, overflow: 'hidden', flexShrink: 0, transform: 'rotate(-2deg)' }}>
+            <img src="/assets/images/sjokoladerommet%20hus.jpg" alt="Konfekt" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+          </div>
+          <div style={{ width: '100%', aspectRatio: '3/4', borderRadius: 18, overflow: 'hidden', flexShrink: 0, transform: 'translateY(-12px)' }}>
+            <img src="/assets/images/sjokoladerommet-inne.jpg" alt="Kaffe" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+          </div>
+          <div style={{ width: '100%', aspectRatio: '3/4', borderRadius: 18, overflow: 'hidden', flexShrink: 0, transform: 'rotate(2deg)' }}>
+            <img src="/assets/images/sjokoladerommet%20hus.jpg" alt="Kake" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+          </div>
         </div>
       </div>
     </section>
@@ -193,8 +198,9 @@ function Signatur() {
             <div className="ribbon" style={{ marginBottom: 16 }}>
               <FlowerMark size={16} color="var(--accent-deep)" /> Vår signatur
             </div>
-            <FotoSlot id="sig-suksess" label="Suksessterte" aspect="4/3" radius={14} tone="accent"
-              style={{ marginBottom: 18 }} />
+            <div style={{ width: '100%', aspectRatio: '4/3', borderRadius: 14, overflow: 'hidden', flexShrink: 0, marginBottom: 18 }}>
+              <img src="/assets/images/sjokoladerommet%20hus.jpg" alt="Suksessterte" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+            </div>
             <h3>Suksessterte</h3>
             <p className="muted" style={{ marginTop: 8, marginBottom: 0 }}>
               Mandelbunn, smørkrem med ekte vanilje. Denne blir vi spurt om hver eneste uke
@@ -203,8 +209,9 @@ function Signatur() {
           </div>
 
           <div className="card">
-            <FotoSlot id="sig-konfektboks" label="konfektboks" aspect="4/3" radius={14} tone="fjord"
-              style={{ marginBottom: 18 }} />
+            <div style={{ width: '100%', aspectRatio: '4/3', borderRadius: 14, overflow: 'hidden', flexShrink: 0, marginBottom: 18 }}>
+              <img src="/assets/images/sjokoladerommet%20hus.jpg" alt="Konfektboks" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+            </div>
             <h3>Håndlaget konfekt</h3>
             <p className="muted" style={{ marginTop: 8, marginBottom: 0 }}>
               Trøfler, karameller og fyldige biter laget her på huset, en boks om gangen.
@@ -213,8 +220,9 @@ function Signatur() {
           </div>
 
           <div className="card">
-            <FotoSlot id="sig-kaffe-kake" label="kaffe & kake" aspect="4/3" radius={14} tone="krem"
-              style={{ marginBottom: 18 }} />
+            <div style={{ width: '100%', aspectRatio: '4/3', borderRadius: 14, overflow: 'hidden', flexShrink: 0, marginBottom: 18 }}>
+              <img src="/assets/images/sjokoladerommet-inne.jpg" alt="Kaffe og kake" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+            </div>
             <h3>Dagens kaker & kaffe</h3>
             <p className="muted" style={{ marginTop: 8, marginBottom: 0 }}>
               Det som kom ut av ovnen i morges, og en kopp god kaffe.
@@ -235,7 +243,9 @@ function Historie() {
           {/* Photo side */}
           <div style={{ position: 'relative' }}>
             <div style={{ maxWidth: 460 }}>
-              <FotoSlot id="hist-janett" label="Janett på kjøkkenet" aspect="3/4" radius={24} tone="krem" />
+              <div style={{ width: '100%', aspectRatio: '3/4', borderRadius: 24, overflow: 'hidden', flexShrink: 0 }}>
+                <img src="/assets/images/janett-haug-larsen.jpg" alt="Janett på kjøkkenet" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              </div>
             </div>
 
             {/* Overlapping mini card — hidden on mobile */}
@@ -244,7 +254,9 @@ function Historie() {
               transform: 'rotate(3deg)', zIndex: 2,
             }}>
               <div className="card" style={{ padding: 16, maxWidth: 280 }}>
-                <FotoSlot id="hist-huset" label="huset på Gravdal" aspect="1" radius={12} tone="accent" />
+                <div style={{ width: '100%', aspectRatio: '1', borderRadius: 12, overflow: 'hidden', flexShrink: 0 }}>
+                  <img src="/assets/images/sjokoladerommet%20hus.jpg" alt="Huset på Gravdal" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                </div>
                 <div className="handwrite" style={{ textAlign: 'center', marginTop: 8, fontSize: 15, color: 'var(--brun-soft)' }}>
                   huset, 2018
                 </div>
@@ -336,7 +348,9 @@ function Velvaere() {
 
           {/* Photo side */}
           <div style={{ position: 'relative' }}>
-            <FotoSlot id="velvaere-rom" label="velværerommet" aspect="4/5" radius={24} tone="fjord" />
+            <div style={{ width: '100%', aspectRatio: '4/5', borderRadius: 24, overflow: 'hidden', flexShrink: 0 }}>
+              <img src="/assets/images/sjokoladerommet-inne.jpg" alt="Velværerommet" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+            </div>
 
             {/* Quote badge — hidden on mobile */}
             <div className="overlay-hide" style={{

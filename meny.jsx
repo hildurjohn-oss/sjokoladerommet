@@ -97,7 +97,9 @@ function MenySections() {
           </div>
           {/* Right: photo + drinks */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
-            <FotoSlot id="meny-disken" label="disken" aspect="4/5" radius={24} tone="accent" />
+            <div style={{ width: '100%', aspectRatio: '4/5', borderRadius: 24, overflow: 'hidden', flexShrink: 0 }}>
+              <img src="/assets/images/sjokoladerommet-inne.jpg" alt="Disken" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+            </div>
             <MenuList title="Kaffe & drikke" items={DRIKKE} accent="var(--fjord-deep)" />
           </div>
         </div>
