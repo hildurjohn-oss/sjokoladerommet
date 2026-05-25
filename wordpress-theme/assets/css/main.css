@@ -417,5 +417,90 @@ p.lead { font-size: clamp(16px, 1.5vw, 19px); line-height: 1.6; color: var(--bru
 .wp-block-group.cols-2,
 .wp-block-group.cols-3,
 .wp-block-group.cols-4 {
-  display: grid; /* reinforces grid over any inherited flex */
+  display: grid;
 }
+
+/* ─── Native Gutenberg wp:button bridge ─────────────────────────────────────
+   Styles the inner <a> so it looks like our .btn classes.
+   className on the outer .wp-block-button wrapper drives the variant. */
+.wp-block-button .wp-block-button__link {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 13px 22px;
+  font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 15px;
+  letter-spacing: 0.01em; border-radius: 999px;
+  border: 1.5px solid transparent;
+  transition: transform .12s ease, background .15s ease, color .15s ease;
+  text-decoration: none; cursor: pointer;
+}
+.wp-block-button .wp-block-button__link:hover { transform: translateY(-1px); text-decoration: none; }
+.wp-block-button.btn-primary .wp-block-button__link  { background: var(--brun); color: var(--krem); border-color: var(--brun); }
+.wp-block-button.btn-primary .wp-block-button__link:hover { background: var(--brun-soft); border-color: var(--brun-soft); }
+.wp-block-button.btn-outline .wp-block-button__link  { background: transparent; color: var(--brun); border-color: var(--brun); }
+.wp-block-button.btn-outline .wp-block-button__link:hover { background: var(--brun); color: var(--krem); }
+.wp-block-button.btn-accent  .wp-block-button__link  { background: var(--accent); color: var(--brun); border-color: var(--accent); }
+.wp-block-button.btn-accent  .wp-block-button__link:hover { background: var(--accent-deep); color: var(--krem); }
+.wp-block-button.btn-light   .wp-block-button__link  { background: transparent; color: var(--krem); border-color: rgba(250,245,238,.4); }
+.wp-block-button.btn-light   .wp-block-button__link:hover { background: rgba(250,245,238,.1); }
+
+/* ─── Card with edge-to-edge top image ──────────────────────────────────────
+   .card-media: white card, image bleeds to all edges at the top.
+   .card-body: text area with padding below the image. */
+.card-media {
+  background: #fff; border-radius: var(--radius-lg);
+  box-shadow: var(--shadow); overflow: hidden;
+}
+.card-media > .wp-block-image { margin: 0; }
+.card-media > .wp-block-image img {
+  aspect-ratio: 4/3; object-fit: cover; width: 100%; display: block;
+}
+.card-body { padding: 20px 24px 26px; }
+.card-body .wp-block-heading { margin-bottom: 8px; }
+
+/* ─── Section header: title group + link side-by-side ───────────────────── */
+.section-header {
+  display: flex; justify-content: space-between; align-items: baseline;
+  flex-wrap: wrap; gap: 12px; margin-bottom: 40px;
+}
+
+/* ─── Button group (flex row) ───────────────────────────────────────────── */
+.btn-group { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+
+/* ─── Menu list item layout ─────────────────────────────────────────────── */
+.menu-list-items { display: flex; flex-direction: column; gap: 0; }
+.menu-item {
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 16px; align-items: baseline;
+  padding: 16px 0; border-bottom: 1px solid rgba(59,26,14,.08);
+}
+.menu-item:last-child { border-bottom: none; }
+.item-name  { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 21px; margin: 0; }
+.item-price { font-family: 'Nunito', sans-serif; font-weight: 700; color: var(--brun); font-variant-numeric: tabular-nums; white-space: nowrap; font-size: 15px; margin: 0; }
+
+/* ─── Timeline ──────────────────────────────────────────────────────────── */
+.timeline-wrapper { border-left: 2px solid var(--accent-soft); }
+.timeline-item {
+  display: grid; grid-template-columns: 68px 1fr;
+  gap: 28px; padding: 22px 0; position: relative;
+}
+.timeline-year {
+  text-align: right; padding-right: 20px;
+  font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 600;
+  color: var(--accent-deep); line-height: 1.3; margin: 0;
+}
+.timeline-content { position: relative; }
+.timeline-content::before {
+  content: ''; position: absolute; left: -37px; top: 8px;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--accent-deep); border: 2px solid var(--krem);
+}
+
+/* ─── Center-align helper for hero simple ───────────────────────────────── */
+.wrap-narrow { max-width: 720px; margin: 0 auto; padding: 0 var(--gut); }
+
+/* ─── Menu category header: SVG flower + h2 side-by-side ───────────────── */
+.menu-category-header {
+  display: flex; align-items: baseline; gap: 14px;
+  margin-bottom: 32px; padding-bottom: 14px;
+  border-bottom: 1.5px solid var(--brun);
+}
+.menu-category-header .wp-block-heading { margin: 0; font-size: clamp(24px,3vw,36px); }
