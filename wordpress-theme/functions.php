@@ -18,6 +18,9 @@ add_action( 'after_setup_theme', function () {
     register_nav_menus( [
         'primary' => __( 'Primær navigasjon', 'sjokoladerommet' ),
     ] );
+
+    // Load theme CSS in the block editor so patterns render correctly
+    add_editor_style( 'assets/css/main.css' );
 } );
 
 // ─── Enqueue assets ──────────────────────────────────────────────────────────
@@ -220,6 +223,14 @@ function sjokoladerommet_image( string $src, string $alt, string $aspect = '4/3'
     </div>
     <?php
 }
+
+// ─── Block Pattern category (must register before patterns auto-load at init:10) ──
+add_action( 'init', function () {
+    register_block_pattern_category( 'sjokoladerommet-seksjon', [
+        'label'       => 'Sjokoladerommet',
+        'description' => 'Seksjonsmønstre for Sjokoladerommet-temaet.',
+    ] );
+}, 9 );
 
 // ─── 404 page title ───────────────────────────────────────────────────────────
 add_filter( 'wp_title', function ( $title ) {

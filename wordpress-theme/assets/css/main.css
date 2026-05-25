@@ -370,3 +370,52 @@ p.lead { font-size: clamp(16px, 1.5vw, 19px); line-height: 1.6; color: var(--bru
 .gap-3 { gap: 24px; }
 .items-center { align-items: center; }
 .hidden { display: none !important; }
+
+/* ─── Block Patterns — additional layout classes ─── */
+.cols-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(16px, 2vw, 28px);
+}
+@media (max-width: 820px) {
+  .cols-4 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .cols-4 { grid-template-columns: 1fr; }
+}
+
+/* Hero fullbleed card with diagonal stripe */
+.hero-forside {
+  border-radius: 28px;
+  overflow: hidden;
+  background: var(--krem-deep);
+  padding: clamp(28px, 5vw, 64px);
+  position: relative;
+}
+.hero-forside::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(135deg, var(--accent-soft) 0 28px, var(--krem) 28px 56px);
+  opacity: .85;
+  pointer-events: none;
+  z-index: 0;
+}
+.hero-forside > * { position: relative; z-index: 1; }
+
+/* Hero portrait image treatment */
+.hero-portrait-img img {
+  width: 100%;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  border-radius: 22px;
+  transform: rotate(2deg);
+  box-shadow: 0 30px 60px -30px rgba(59,26,14,.45);
+}
+
+/* Block editor: prevent WP's default block styles from overriding our grid */
+.wp-block-group.cols-2,
+.wp-block-group.cols-3,
+.wp-block-group.cols-4 {
+  display: grid; /* reinforces grid over any inherited flex */
+}

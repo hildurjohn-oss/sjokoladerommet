@@ -1,0 +1,155 @@
+{
+  "version": "1.0",
+  "theme": "sjokoladerommet",
+  "description": "WordPress Block Patterns for Sjokoladerommet. Access via: Add Block → Patterns → Sjokoladerommet.",
+  "patterns": [
+    {
+      "slug": "sjokoladerommet/hero-enkel",
+      "title": "Hero – Enkel seksjon",
+      "file": "patterns/hero-enkel.php",
+      "description": "Simple hero section with eyebrow label, H1 title, lead text, and info chips. Use on Meny, Om oss, Bestill kake pages.",
+      "editable_as_blocks": [
+        { "block": "wp:paragraph (eyebrow)", "field": "Etikett", "description": "Short uppercase label above the title" },
+        { "block": "wp:heading (h1)",         "field": "Tittel",  "description": "Main page heading" },
+        { "block": "wp:paragraph (lead)",     "field": "Ingress", "description": "2-3 sentence intro text" }
+      ],
+      "html_only": [
+        { "element": ".chip tags", "description": "Info chips (opening hours, address) — edit via HTML view" }
+      ]
+    },
+    {
+      "slug": "sjokoladerommet/hero-fullbleed",
+      "title": "Hero – Fullskjerm med bilde (Forside)",
+      "file": "patterns/hero-fullbleed.php",
+      "description": "Homepage hero with diagonal-stripe background, 2-column grid, and portrait photo on the right.",
+      "editable_as_blocks": [
+        { "block": "wp:paragraph (eyebrow)", "field": "Etikett",     "description": "Brand tagline" },
+        { "block": "wp:heading (h1)",         "field": "Tittel",     "description": "Main headline" },
+        { "block": "wp:paragraph (lead)",     "field": "Ingress",    "description": "Short intro text" },
+        { "block": "wp:image",                "field": "Portrettfoto", "description": "Portrait photo — use 4:5 ratio image for best result" }
+      ],
+      "html_only": [
+        { "element": "CTA-knapper", "description": "Primary and outline buttons with hrefs" },
+        { "element": ".chip tags",  "description": "Info chips" }
+      ],
+      "css_required": ["hero-forside", "cols-2"]
+    },
+    {
+      "slug": "sjokoladerommet/favoritter-tre-kort",
+      "title": "Tre kort – Signaturprodukter",
+      "file": "patterns/favoritter-tre-kort.php",
+      "description": "3-column product card grid with image, title, and description. Shows signature products.",
+      "editable_as_blocks": [
+        { "block": "wp:image (×3)",    "field": "Produktbilder",     "description": "One image per card" },
+        { "block": "wp:heading h3 (×3)", "field": "Produktnavn",    "description": "Card title" },
+        { "block": "wp:paragraph (×3)", "field": "Produktbeskrivelse", "description": "Short description" }
+      ],
+      "html_only": [
+        { "element": "Seksjonshode",    "description": "Eyebrow + H2 + 'Hele menyen' link — edit via HTML view" },
+        { "element": ".ribbon badge",   "description": "Signature ribbon on first card" }
+      ],
+      "css_required": ["cols-3"]
+    },
+    {
+      "slug": "sjokoladerommet/tekst-og-bilde",
+      "title": "Tekst og bilde – Med sitat",
+      "file": "patterns/tekst-og-bilde.php",
+      "description": "2-column section: portrait photo left, eyebrow + H2 + lead + styled blockquote + button right.",
+      "editable_as_blocks": [
+        { "block": "wp:image",            "field": "Foto",       "description": "Portrait/story photo — use 3:4 ratio" },
+        { "block": "wp:paragraph (eyebrow)", "field": "Etikett", "description": "Small label above heading" },
+        { "block": "wp:heading (h2)",      "field": "Overskrift", "description": "Section title" },
+        { "block": "wp:paragraph (lead)",  "field": "Ingress",   "description": "Lead paragraph" },
+        { "block": "wp:paragraph (muted)", "field": "Brødtekst", "description": "Additional body paragraph" }
+      ],
+      "html_only": [
+        { "element": "blockquote + knapp", "description": "Styled quote block and CTA button" }
+      ],
+      "css_required": ["cols-2"]
+    },
+    {
+      "slug": "sjokoladerommet/tjenester-og-bilde",
+      "title": "Tjenester og bilde – Velværeavdelingen",
+      "file": "patterns/tjenester-og-bilde.php",
+      "description": "2-column section: services list with prices and booking button left, image right.",
+      "editable_as_blocks": [
+        { "block": "wp:paragraph (eyebrow)", "field": "Etikett",  "description": "Section label (uses fjord color)" },
+        { "block": "wp:heading (h2)",         "field": "Overskrift", "description": "Section title" },
+        { "block": "wp:paragraph (lead)",     "field": "Ingress",  "description": "Lead paragraph" },
+        { "block": "wp:image",                "field": "Foto",     "description": "Interior/wellness room photo" }
+      ],
+      "html_only": [
+        { "element": ".velvare-services grid", "description": "4 service cards with names and prices" },
+        { "element": "Bestill time + telefon", "description": "Booking button and phone number" }
+      ],
+      "css_required": ["cols-2", "velvare-services"]
+    },
+    {
+      "slug": "sjokoladerommet/cta-mork",
+      "title": "CTA – Mørk bakgrunn",
+      "file": "patterns/cta-mork.php",
+      "description": "Dark brown call-to-action section with large floral decoration, heading, and map button. Typically placed at bottom of pages.",
+      "editable_as_blocks": [
+        { "block": "wp:heading (h2)", "field": "Overskrift", "description": "CTA headline — white text on dark background" },
+        { "block": "wp:paragraph",    "field": "Brødtekst",  "description": "Supporting text" }
+      ],
+      "html_only": [
+        { "element": "FlowerMark dekor", "description": "Large decorative flower (opacity 18%)" },
+        { "element": "Knapper + adresse", "description": "Map button and address text" }
+      ],
+      "css_required": ["brun-bg"]
+    },
+    {
+      "slug": "sjokoladerommet/menyliste-seksjon",
+      "title": "Menyliste – Kategori med priser",
+      "file": "patterns/menyliste-seksjon.php",
+      "description": "One menu category with a styled title and a list of items showing name, description, and price.",
+      "editable_as_blocks": [],
+      "html_only": [
+        { "element": "Hele menylisten", "description": "Title (H2), all items with names, descriptions, prices — edit entirely via HTML view. Add/remove <li> elements to change items." }
+      ],
+      "usage_note": "Insert this pattern multiple times for multiple categories (Konfekt, Kaker, Drikke). Edit the H2 title and each list item in HTML view."
+    },
+    {
+      "slug": "sjokoladerommet/tidslinje",
+      "title": "Tidslinje – Historisk oversikt",
+      "file": "patterns/tidslinje.php",
+      "description": "Vertical timeline with year, step title, and description. Shows milestones from 1998 to present.",
+      "editable_as_blocks": [
+        { "block": "wp:paragraph (eyebrow)", "field": "Etikett",    "description": "Small label above heading" },
+        { "block": "wp:heading (h2)",         "field": "Overskrift", "description": "Section title" }
+      ],
+      "html_only": [
+        { "element": "Tidslinjesteg", "description": "All timeline steps (<li> elements) — edit years, titles, and descriptions via HTML view. Add/remove <li> elements for new milestones." }
+      ]
+    },
+    {
+      "slug": "sjokoladerommet/verdier-grid",
+      "title": "Verdier – Fire-kolonne kortgrid",
+      "file": "patterns/verdier-grid.php",
+      "description": "4-column responsive grid of cards with FlowerMark icon, title, and description. For core values or features.",
+      "editable_as_blocks": [
+        { "block": "wp:paragraph (eyebrow)", "field": "Etikett",    "description": "Small label above heading" },
+        { "block": "wp:heading (h2)",         "field": "Overskrift", "description": "Section title" },
+        { "block": "wp:heading h3 (×4)",      "field": "Korttitler", "description": "Title on each card" },
+        { "block": "wp:paragraph (×4)",       "field": "Kortbeskrivelser", "description": "Description on each card" }
+      ],
+      "html_only": [
+        { "element": "FlowerMark ikon (×4)", "description": "Decorative flower icon on each card" }
+      ],
+      "css_required": ["cols-4"]
+    },
+    {
+      "slug": "sjokoladerommet/sitat-stor",
+      "title": "Sitat – Stort sentrert",
+      "file": "patterns/sitat-stor.php",
+      "description": "Large centered quote with FlowerMark and attribution. Good as a closing section on any page.",
+      "editable_as_blocks": [
+        { "block": "wp:quote", "field": "Sitatblokk", "description": "The quote text and citation (<cite>) are editable inside the quote block" }
+      ],
+      "html_only": [
+        { "element": "FlowerMark ikon", "description": "Decorative flower above the quote" }
+      ]
+    }
+  ]
+}
