@@ -153,3 +153,76 @@ function sjokoladerommet_current_page_id() {
 
 // ─── Document title separator ─────────────────────────────────────────────────
 add_filter( 'document_title_separator', function () { return '—'; } );
+
+// ─── Nav walker — strips <li> wrapper, adds aria-current + class="current" ────
+class Sjokoladerommet_Nav_Walker extends Walker_Nav_Menu {
+    public function start_el( &$output, $data_object, $depth = 0, $args = null, $current_object_id = 0 ) {
+        $item    = $data_object;
+        $classes = empty( $item->classes ) ? [] : (array) $item->classes;
+        $active  = in_array( 'current-menu-item', $classes, true )
+                || in_array( 'current_page_item',  $classes, true );
+
+        $atts          = [];
+        $atts['href']  = ! empty( $item->url ) ? $item->url : '#';
+        if ( $active ) {
+            $atts['class']       = 'current';
+            $atts['aria-current'] = 'page';
+        }
+
+        $attr_str = '';
+        foreach ( $atts as $k => $v ) {
+            $attr_str .= ' ' . esc_attr( $k ) . '="' . esc_attr( $v ) . '"';
+        }
+
+        $output .= '<a' . $attr_str . '>' . esc_html( $item->title ) . '</a>';
+    }
+    public function end_el(   &$output, $data_object, $depth = 0, $args = null ) {}
+    public function start_lvl( &$output, $depth = 0, $args = null ) {}
+    public function end_lvl(   &$output, $depth = 0, $args = null ) {}
+}
+
+// ─── Menu-list helper (used by page-meny.php and menu-list template part) ─────
+function sjokoladerommet_menu_list( string $title, array $items, string $accent ): void {
+    ?>
+    <div>
+      <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:24px;padding-bottom:14px;border-bottom:1.5px solid var(--brun)">
+        <?php sjokoladerommet_flower_mark( 22, $accent ); ?>
+        <h2 style="font-size:clamp(24px,3vw,36px)"><?php echo esc_html( $title ); ?></h2>
+      </div>
+      <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:18px">
+        <?php foreach ( $items as $it ) : ?>
+          <li style="display:grid;grid-template-columns:1fr auto;gap:16px;align-items:baseline">
+            <div>
+              <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap">
+                <span style="font-family:'Playfair Display',serif;font-weight:600;font-size:21px"><?php echo esc_html( $it['n'] ); ?></span>
+                <?php if ( ! empty( $it['sig'] ) ) : ?>
+                  <span class="chip accent" style="padding:2px 10px;font-size:11px;letter-spacing:.1em;text-transform:uppercase">Signatur</span>
+                <?php endif; ?>
+              </div>
+              <div class="muted" style="font-size:15px;margin-top:4px"><?php echo esc_html( $it['d'] ); ?></div>
+            </div>
+            <div style="font-family:Nunito,sans-serif;font-weight:700;color:var(--brun);font-variant-numeric:tabular-nums;white-space:nowrap;font-size:15px"><?php echo esc_html( $it['p'] ); ?></div>
+          </li>
+        <?php endforeach; ?>
+      </ul>
+    </div>
+    <?php
+}
+
+// ─── Image helper — outputs a responsive cover-fit image block ────────────────
+function sjokoladerommet_image( string $src, string $alt, string $aspect = '4/3', int $radius = 18, string $extra_style = '' ): void {
+    $wrap_style = 'width:100%;aspect-ratio:' . $aspect . ';border-radius:' . $radius . 'px;overflow:hidden;flex-shrink:0;'
+                . $extra_style;
+    ?>
+    <div style="<?php echo esc_attr( $wrap_style ); ?>">
+      <img src="<?php echo esc_url( $src ); ?>" alt="<?php echo esc_attr( $alt ); ?>"
+           style="width:100%;height:100%;object-fit:cover;display:block">
+    </div>
+    <?php
+}
+
+// ─── 404 page title ───────────────────────────────────────────────────────────
+add_filter( 'wp_title', function ( $title ) {
+    if ( is_404() ) return '404 — Siden finnes ikke';
+    return $title;
+} );

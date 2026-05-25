@@ -1,7 +1,7 @@
 <?php
 /**
- * Template Name: Forside (homepage)
- * Converts forside.jsx — HeroFullbleed + Signatur + Historie + Velvaere + KomInnom
+ * front-page.php — Homepage (auto-used by WordPress when a static front page is set).
+ * Converts forside.jsx: HeroFullbleed + Signatur + Historie + Velvaere + KomInnom
  */
 get_header();
 $img = get_template_directory_uri() . '/assets/images/';
@@ -78,42 +78,32 @@ $img = get_template_directory_uri() . '/assets/images/';
     </div>
 
     <div class="cols-3">
-
-      <div class="card" style="position:relative;overflow:hidden">
-        <div class="ribbon" style="margin-bottom:16px">
-          <?php sjokoladerommet_flower_mark( 16, 'var(--accent-deep)' ); ?> Vår signatur
-        </div>
-        <div style="width:100%;aspect-ratio:4/3;border-radius:14px;overflow:hidden;flex-shrink:0;margin-bottom:18px">
-          <img src="<?php echo esc_url( $img . 'sjokoladerommet-hus.jpg' ); ?>" alt="Suksessterte" style="width:100%;height:100%;object-fit:cover;display:block">
-        </div>
-        <h3>Suksessterte</h3>
-        <p class="muted" style="margin-top:8px;margin-bottom:0">
-          Mandelbunn, smørkrem med ekte vanilje. Denne blir vi spurt om hver eneste uke
-          og den vi aldri blir lei av å lage.
-        </p>
-      </div>
-
-      <div class="card">
-        <div style="width:100%;aspect-ratio:4/3;border-radius:14px;overflow:hidden;flex-shrink:0;margin-bottom:18px">
-          <img src="<?php echo esc_url( $img . 'sjokoladerommet-hus.jpg' ); ?>" alt="Håndlaget konfekt" style="width:100%;height:100%;object-fit:cover;display:block">
-        </div>
-        <h3>Håndlaget konfekt</h3>
-        <p class="muted" style="margin-top:8px;margin-bottom:0">
-          Trøfler, karameller og fyldige biter laget her på huset, en boks om gangen.
-          Plukk dine egne favoritter i disken.
-        </p>
-      </div>
-
-      <div class="card">
-        <div style="width:100%;aspect-ratio:4/3;border-radius:14px;overflow:hidden;flex-shrink:0;margin-bottom:18px">
-          <img src="<?php echo esc_url( $img . 'sjokoladerommet-inne.jpg' ); ?>" alt="Kaffe og kake" style="width:100%;height:100%;object-fit:cover;display:block">
-        </div>
-        <h3>Dagens kaker & kaffe</h3>
-        <p class="muted" style="margin-top:8px;margin-bottom:0">
-          Det som kom ut av ovnen i morges, og en kopp god kaffe.
-        </p>
-      </div>
-
+      <?php
+      $signatur_cards = [
+          [
+              'image'       => $img . 'sjokoladerommet-hus.jpg',
+              'alt'         => 'Suksessterte',
+              'title'       => 'Suksessterte',
+              'description' => 'Mandelbunn, smørkrem med ekte vanilje. Denne blir vi spurt om hver eneste uke og den vi aldri blir lei av å lage.',
+              'ribbon'      => 'Vår signatur',
+          ],
+          [
+              'image'       => $img . 'sjokoladerommet-hus.jpg',
+              'alt'         => 'Håndlaget konfekt',
+              'title'       => 'Håndlaget konfekt',
+              'description' => 'Trøfler, karameller og fyldige biter laget her på huset, en boks om gangen. Plukk dine egne favoritter i disken.',
+          ],
+          [
+              'image'       => $img . 'sjokoladerommet-inne.jpg',
+              'alt'         => 'Kaffe og kake',
+              'title'       => 'Dagens kaker & kaffe',
+              'description' => 'Det som kom ut av ovnen i morges, og en kopp god kaffe.',
+          ],
+      ];
+      foreach ( $signatur_cards as $card ) :
+          get_template_part( 'template-parts/card', null, $card );
+      endforeach;
+      ?>
     </div>
   </div>
 </section>

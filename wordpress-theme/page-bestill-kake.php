@@ -8,17 +8,12 @@ get_header();
 
 <main>
 
-<!-- ═══ HERO ════════════════════════════════════════════════════════════════ -->
-<section class="section" style="padding-bottom:24px">
-  <div class="wrap" style="max-width:760px">
-    <div class="eyebrow" style="margin-bottom:18px">Bestill kake</div>
-    <h1>La oss bake noe spesielt for deg.</h1>
-    <p class="lead" style="margin-top:22px">
-      Bursdag, dåp, eller bare en god grunn til kake — vi tar imot bestillinger
-      torsdag til søndag, så lenge vi får tre dagers varsel. Vi gleder oss til å høre fra deg.
-    </p>
-  </div>
-</section>
+<?php get_template_part( 'template-parts/hero-section', null, [
+    'eyebrow' => 'Bestill kake',
+    'title'   => 'La oss bake noe spesielt for deg.',
+    'lead'    => 'Bursdag, dåp, eller bare en god grunn til kake — vi tar imot bestillinger torsdag til søndag, så lenge vi får tre dagers varsel. Vi gleder oss til å høre fra deg.',
+    'pb'      => '24px',
+] ); ?>
 
 <!-- ═══ BESTILLINGSSKJEMA ═══════════════════════════════════════════════════ -->
 <section class="section" style="padding-top:0">
