@@ -1,0 +1,6 @@
+{
+  "__file": "wp_block",
+  "title": "Hero – Enkel seksjon",
+  "content": "<!-- wp:html -->\n<section class=\"section tight\" style=\"background:var(--krem-deep)\">\n  <div class=\"wrap\" style=\"text-align:center;max-width:720px;margin-inline:auto\">\n    <p class=\"eyebrow\" style=\"justify-content:center\">Etikett her</p>\n    <h1 style=\"font-size:clamp(32px,4.5vw,56px);margin:16px 0\">Overskrift her</h1>\n    <p class=\"lead\" style=\"margin-bottom:0\">Ingress her – 2–3 setninger om siden og hva gjesten kan forvente.</p>\n    <div style=\"display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;justify-content:center\">\n      <span class=\"chip fjord\">★ Torsdag–søndag 11–16</span>\n      <span class=\"chip\">Gravdalsgata 15, Lofoten</span>\n    </div>\n  </div>\n</section>\n<!-- /wp:html -->",
+  "syncStatus": ""
+}
