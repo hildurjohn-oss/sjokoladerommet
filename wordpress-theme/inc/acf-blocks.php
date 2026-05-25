@@ -4,10 +4,6 @@
  * Requires ACF Pro (acf_register_block_type + acf_add_local_field_group).
  */
 
-if ( ! function_exists( 'acf_register_block_type' ) ) {
-	return;
-}
-
 // ─── Custom block category ────────────────────────────────────────────────────
 add_filter( 'block_categories_all', function ( $categories ) {
 	return array_merge(
@@ -17,7 +13,11 @@ add_filter( 'block_categories_all', function ( $categories ) {
 } );
 
 // ─── Register ACF block types ─────────────────────────────────────────────────
+// acf/init fires after ACF Pro is fully loaded — guard check belongs here, not at file top.
 add_action( 'acf/init', function () {
+	if ( ! function_exists( 'acf_register_block_type' ) ) {
+		return;
+	}
 	$dir    = get_template_directory() . '/blocks/';
 	$blocks = [
 		[
