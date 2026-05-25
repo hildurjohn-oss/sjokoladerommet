@@ -1,7 +1,13 @@
 <?php
 /**
  * Template Name: Meny
- * Converts meny.jsx — menu page with konfekt, kaker, drikke + photo.
+ *
+ * Recommended ACF block layout for this page:
+ *   1. acf/hero-section  (style: simple — Meny heading + lead + chips)
+ *   2. acf/menu-list     (Konfekt & sjokolade)
+ *   3. acf/menu-list     (Kaker — insert again, change title + items)
+ *   4. acf/menu-list     (Kaffe & drikke)
+ *   5. acf/cta           (Bestill kake CTA)
  */
 get_header();
 $img = get_template_directory_uri() . '/assets/images/';

@@ -1,7 +1,13 @@
 <?php
 /**
  * Template Name: Om oss
- * Converts om-oss.jsx — Janetts history, timeline, values, wellness
+ *
+ * Recommended ACF block layout for this page:
+ *   1. acf/hero-section  (style: simple — Om oss heading)
+ *   2. acf/timeline      (Vår historie — milestones 1998–2024)
+ *   3. acf/card-grid     (cols: 4, bg: cream — Verdier/core values)
+ *   4. acf/two-column    (services mode, image right — Velværeavdelingen)
+ *   5. acf/quote         (Closing quote, bg: cream)
  */
 get_header();
 $img = get_template_directory_uri() . '/assets/images/';

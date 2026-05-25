@@ -1,154 +1,147 @@
 {
-  "version": "1.0",
+  "version": "2.0",
   "theme": "sjokoladerommet",
-  "description": "WordPress Block Patterns for Sjokoladerommet. Access via: Add Block → Patterns → Sjokoladerommet.",
-  "patterns": [
+  "type": "acf-blocks",
+  "description": "ACF Custom Blocks for Sjokoladerommet. Access via: Add Block → Sjokoladerommet category.",
+  "blocks": [
     {
-      "slug": "sjokoladerommet/hero-enkel",
-      "title": "Hero – Enkel seksjon",
-      "file": "patterns/hero-enkel.php",
-      "description": "Simple hero section with eyebrow label, H1 title, lead text, and info chips. Use on Meny, Om oss, Bestill kake pages.",
-      "editable_as_blocks": [
-        { "block": "wp:paragraph (eyebrow)", "field": "Etikett", "description": "Short uppercase label above the title" },
-        { "block": "wp:heading (h1)",         "field": "Tittel",  "description": "Main page heading" },
-        { "block": "wp:paragraph (lead)",     "field": "Ingress", "description": "2-3 sentence intro text" }
-      ],
-      "html_only": [
-        { "element": ".chip tags", "description": "Info chips (opening hours, address) — edit via HTML view" }
+      "name": "acf/hero-section",
+      "title": "Hero – Seksjon",
+      "file": "blocks/hero-section/render.php",
+      "description": "Page hero. Supports two modes: 'simple' (centered header with eyebrow + H1 + lead) and 'fullbleed' (diagonal-stripe card with portrait photo, buttons, and chips).",
+      "fields": [
+        { "name": "style",     "type": "select",   "options": ["simple", "fullbleed"], "description": "Layout mode" },
+        { "name": "eyebrow",   "type": "text",     "description": "Small uppercase label above title" },
+        { "name": "title",     "type": "text",     "description": "Main H1 heading" },
+        { "name": "lead",      "type": "textarea", "description": "2-3 sentence intro" },
+        { "name": "image",     "type": "image",    "description": "Portrait photo (fullbleed mode only, 4:5 ratio)" },
+        { "name": "btn1_label","type": "text",     "description": "Primary button text (fullbleed only)" },
+        { "name": "btn1_url",  "type": "url",      "description": "Primary button link" },
+        { "name": "btn2_label","type": "text",     "description": "Secondary button text" },
+        { "name": "btn2_url",  "type": "url",      "description": "Secondary button link" },
+        { "name": "chips",     "type": "repeater", "description": "Info chips (opening hours, address)", "sub_fields": [
+          { "name": "text",  "type": "text",   "description": "Chip label" },
+          { "name": "style", "type": "select", "options": ["default", "fjord"], "description": "Chip color" }
+        ]}
       ]
     },
     {
-      "slug": "sjokoladerommet/hero-fullbleed",
-      "title": "Hero – Fullskjerm med bilde (Forside)",
-      "file": "patterns/hero-fullbleed.php",
-      "description": "Homepage hero with diagonal-stripe background, 2-column grid, and portrait photo on the right.",
-      "editable_as_blocks": [
-        { "block": "wp:paragraph (eyebrow)", "field": "Etikett",     "description": "Brand tagline" },
-        { "block": "wp:heading (h1)",         "field": "Tittel",     "description": "Main headline" },
-        { "block": "wp:paragraph (lead)",     "field": "Ingress",    "description": "Short intro text" },
-        { "block": "wp:image",                "field": "Portrettfoto", "description": "Portrait photo — use 4:5 ratio image for best result" }
-      ],
-      "html_only": [
-        { "element": "CTA-knapper", "description": "Primary and outline buttons with hrefs" },
-        { "element": ".chip tags",  "description": "Info chips" }
-      ],
-      "css_required": ["hero-forside", "cols-2"]
+      "name": "acf/text-section",
+      "title": "Tekstseksjon",
+      "file": "blocks/text-section/render.php",
+      "description": "Generic text section with optional eyebrow, H2, lead, and body text. Supports centered or left alignment and rose/fjord accent colors.",
+      "fields": [
+        { "name": "eyebrow", "type": "text",     "description": "Small uppercase label" },
+        { "name": "title",   "type": "text",     "description": "H2 heading" },
+        { "name": "lead",    "type": "textarea", "description": "Lead paragraph" },
+        { "name": "body",    "type": "textarea", "description": "Body paragraph" },
+        { "name": "accent",  "type": "select",   "options": ["rose", "fjord"], "description": "Eyebrow accent color" },
+        { "name": "align",   "type": "select",   "options": ["left", "center"], "description": "Text alignment" }
+      ]
     },
     {
-      "slug": "sjokoladerommet/favoritter-tre-kort",
-      "title": "Tre kort – Signaturprodukter",
-      "file": "patterns/favoritter-tre-kort.php",
-      "description": "3-column product card grid with image, title, and description. Shows signature products.",
-      "editable_as_blocks": [
-        { "block": "wp:image (×3)",    "field": "Produktbilder",     "description": "One image per card" },
-        { "block": "wp:heading h3 (×3)", "field": "Produktnavn",    "description": "Card title" },
-        { "block": "wp:paragraph (×3)", "field": "Produktbeskrivelse", "description": "Short description" }
-      ],
-      "html_only": [
-        { "element": "Seksjonshode",    "description": "Eyebrow + H2 + 'Hele menyen' link — edit via HTML view" },
-        { "element": ".ribbon badge",   "description": "Signature ribbon on first card" }
-      ],
-      "css_required": ["cols-3"]
+      "name": "acf/menu-list",
+      "title": "Menyliste",
+      "file": "blocks/menu-list/render.php",
+      "description": "One menu category with a FlowerMark-decorated title and a list of items (name, description, price). Insert multiple times for multiple categories.",
+      "fields": [
+        { "name": "eyebrow", "type": "text",   "description": "Small label above title" },
+        { "name": "title",   "type": "text",   "description": "Category name (H2)" },
+        { "name": "accent",  "type": "select", "options": ["rose", "fjord"], "description": "FlowerMark color" },
+        { "name": "items",   "type": "repeater", "description": "Menu items", "sub_fields": [
+          { "name": "name",        "type": "text",     "description": "Item name" },
+          { "name": "description", "type": "textarea", "description": "Item description" },
+          { "name": "price",       "type": "text",     "description": "Price (e.g. 32 kr/stk)" },
+          { "name": "signature",   "type": "true_false", "description": "Show 'Signatur' badge" }
+        ]}
+      ]
     },
     {
-      "slug": "sjokoladerommet/tekst-og-bilde",
-      "title": "Tekst og bilde – Med sitat",
-      "file": "patterns/tekst-og-bilde.php",
-      "description": "2-column section: portrait photo left, eyebrow + H2 + lead + styled blockquote + button right.",
-      "editable_as_blocks": [
-        { "block": "wp:image",            "field": "Foto",       "description": "Portrait/story photo — use 3:4 ratio" },
-        { "block": "wp:paragraph (eyebrow)", "field": "Etikett", "description": "Small label above heading" },
-        { "block": "wp:heading (h2)",      "field": "Overskrift", "description": "Section title" },
-        { "block": "wp:paragraph (lead)",  "field": "Ingress",   "description": "Lead paragraph" },
-        { "block": "wp:paragraph (muted)", "field": "Brødtekst", "description": "Additional body paragraph" }
-      ],
-      "html_only": [
-        { "element": "blockquote + knapp", "description": "Styled quote block and CTA button" }
-      ],
-      "css_required": ["cols-2"]
+      "name": "acf/timeline",
+      "title": "Tidslinje",
+      "file": "blocks/timeline/render.php",
+      "description": "Vertical timeline for milestones/history. Each step has year, title, and description.",
+      "fields": [
+        { "name": "eyebrow", "type": "text",     "description": "Small label above heading" },
+        { "name": "title",   "type": "text",     "description": "Section H2 heading" },
+        { "name": "items",   "type": "repeater", "description": "Timeline steps", "sub_fields": [
+          { "name": "year",        "type": "text",     "description": "Year or date label" },
+          { "name": "step_title",  "type": "text",     "description": "Milestone title (H3)" },
+          { "name": "description", "type": "textarea", "description": "What happened" }
+        ]}
+      ]
     },
     {
-      "slug": "sjokoladerommet/tjenester-og-bilde",
-      "title": "Tjenester og bilde – Velværeavdelingen",
-      "file": "patterns/tjenester-og-bilde.php",
-      "description": "2-column section: services list with prices and booking button left, image right.",
-      "editable_as_blocks": [
-        { "block": "wp:paragraph (eyebrow)", "field": "Etikett",  "description": "Section label (uses fjord color)" },
-        { "block": "wp:heading (h2)",         "field": "Overskrift", "description": "Section title" },
-        { "block": "wp:paragraph (lead)",     "field": "Ingress",  "description": "Lead paragraph" },
-        { "block": "wp:image",                "field": "Foto",     "description": "Interior/wellness room photo" }
-      ],
-      "html_only": [
-        { "element": ".velvare-services grid", "description": "4 service cards with names and prices" },
-        { "element": "Bestill time + telefon", "description": "Booking button and phone number" }
-      ],
-      "css_required": ["cols-2", "velvare-services"]
+      "name": "acf/card-grid",
+      "title": "Kortgrid",
+      "file": "blocks/card-grid/render.php",
+      "description": "Responsive grid of image cards. Supports 3 or 4 columns, white or cream background. Each card has an optional ribbon badge.",
+      "fields": [
+        { "name": "eyebrow", "type": "text",   "description": "Small label above section heading" },
+        { "name": "title",   "type": "text",   "description": "Section H2 heading" },
+        { "name": "cols",    "type": "select", "options": ["3", "4"], "description": "Number of columns" },
+        { "name": "bg",      "type": "select", "options": ["white", "cream"], "description": "Section background" },
+        { "name": "cards",   "type": "repeater", "description": "Cards", "sub_fields": [
+          { "name": "image",      "type": "image",     "description": "Card image (4:3 ratio)" },
+          { "name": "ribbon",     "type": "text",      "description": "Optional ribbon badge label" },
+          { "name": "card_title", "type": "text",      "description": "Card heading (H3)" },
+          { "name": "description","type": "textarea",  "description": "Card body text" }
+        ]}
+      ]
     },
     {
-      "slug": "sjokoladerommet/cta-mork",
+      "name": "acf/quote",
+      "title": "Sitat",
+      "file": "blocks/quote/render.php",
+      "description": "Large centered quote with FlowerMark decoration and citation. Good as closing section.",
+      "fields": [
+        { "name": "quote",    "type": "textarea", "description": "Quote text (without quotation marks)" },
+        { "name": "citation", "type": "text",     "description": "Attribution (author/source)" },
+        { "name": "accent",   "type": "select",   "options": ["rose", "fjord"], "description": "FlowerMark color" },
+        { "name": "bg",       "type": "select",   "options": ["white", "cream"], "description": "Section background" }
+      ]
+    },
+    {
+      "name": "acf/cta",
       "title": "CTA – Mørk bakgrunn",
-      "file": "patterns/cta-mork.php",
-      "description": "Dark brown call-to-action section with large floral decoration, heading, and map button. Typically placed at bottom of pages.",
-      "editable_as_blocks": [
-        { "block": "wp:heading (h2)", "field": "Overskrift", "description": "CTA headline — white text on dark background" },
-        { "block": "wp:paragraph",    "field": "Brødtekst",  "description": "Supporting text" }
-      ],
-      "html_only": [
-        { "element": "FlowerMark dekor", "description": "Large decorative flower (opacity 18%)" },
-        { "element": "Knapper + adresse", "description": "Map button and address text" }
-      ],
-      "css_required": ["brun-bg"]
-    },
-    {
-      "slug": "sjokoladerommet/menyliste-seksjon",
-      "title": "Menyliste – Kategori med priser",
-      "file": "patterns/menyliste-seksjon.php",
-      "description": "One menu category with a styled title and a list of items showing name, description, and price.",
-      "editable_as_blocks": [],
-      "html_only": [
-        { "element": "Hele menylisten", "description": "Title (H2), all items with names, descriptions, prices — edit entirely via HTML view. Add/remove <li> elements to change items." }
-      ],
-      "usage_note": "Insert this pattern multiple times for multiple categories (Konfekt, Kaker, Drikke). Edit the H2 title and each list item in HTML view."
-    },
-    {
-      "slug": "sjokoladerommet/tidslinje",
-      "title": "Tidslinje – Historisk oversikt",
-      "file": "patterns/tidslinje.php",
-      "description": "Vertical timeline with year, step title, and description. Shows milestones from 1998 to present.",
-      "editable_as_blocks": [
-        { "block": "wp:paragraph (eyebrow)", "field": "Etikett",    "description": "Small label above heading" },
-        { "block": "wp:heading (h2)",         "field": "Overskrift", "description": "Section title" }
-      ],
-      "html_only": [
-        { "element": "Tidslinjesteg", "description": "All timeline steps (<li> elements) — edit years, titles, and descriptions via HTML view. Add/remove <li> elements for new milestones." }
+      "file": "blocks/cta/render.php",
+      "description": "Dark brown call-to-action with large decorative FlowerMark, heading, body text, and two buttons. Typically placed at the bottom of pages.",
+      "fields": [
+        { "name": "title",      "type": "text",     "description": "CTA headline (white on dark bg)" },
+        { "name": "body",       "type": "textarea", "description": "Supporting text" },
+        { "name": "btn1_label", "type": "text",     "description": "Primary button text" },
+        { "name": "btn1_url",   "type": "url",      "description": "Primary button link" },
+        { "name": "btn2_label", "type": "text",     "description": "Secondary button text" },
+        { "name": "btn2_url",   "type": "url",      "description": "Secondary button link" },
+        { "name": "address",    "type": "text",     "description": "Address line shown below buttons" }
       ]
     },
     {
-      "slug": "sjokoladerommet/verdier-grid",
-      "title": "Verdier – Fire-kolonne kortgrid",
-      "file": "patterns/verdier-grid.php",
-      "description": "4-column responsive grid of cards with FlowerMark icon, title, and description. For core values or features.",
-      "editable_as_blocks": [
-        { "block": "wp:paragraph (eyebrow)", "field": "Etikett",    "description": "Small label above heading" },
-        { "block": "wp:heading (h2)",         "field": "Overskrift", "description": "Section title" },
-        { "block": "wp:heading h3 (×4)",      "field": "Korttitler", "description": "Title on each card" },
-        { "block": "wp:paragraph (×4)",       "field": "Kortbeskrivelser", "description": "Description on each card" }
-      ],
-      "html_only": [
-        { "element": "FlowerMark ikon (×4)", "description": "Decorative flower icon on each card" }
-      ],
-      "css_required": ["cols-4"]
-    },
-    {
-      "slug": "sjokoladerommet/sitat-stor",
-      "title": "Sitat – Stort sentrert",
-      "file": "patterns/sitat-stor.php",
-      "description": "Large centered quote with FlowerMark and attribution. Good as a closing section on any page.",
-      "editable_as_blocks": [
-        { "block": "wp:quote", "field": "Sitatblokk", "description": "The quote text and citation (<cite>) are editable inside the quote block" }
-      ],
-      "html_only": [
-        { "element": "FlowerMark ikon", "description": "Decorative flower above the quote" }
+      "name": "acf/two-column",
+      "title": "To kolonner – Bilde og tekst",
+      "file": "blocks/two-column/render.php",
+      "description": "Two-column layout with image on one side and content on the other. Two modes: 'text' (eyebrow, heading, lead, body, optional quote, button) or 'services' (services grid with prices and contact button).",
+      "fields": [
+        { "name": "text_mode",  "type": "select", "options": ["text", "services"], "description": "Content mode" },
+        { "name": "eyebrow",    "type": "text",     "description": "Small label above heading" },
+        { "name": "title",      "type": "text",     "description": "H2 heading" },
+        { "name": "lead",       "type": "textarea", "description": "Lead paragraph" },
+        { "name": "body",       "type": "textarea", "description": "Body paragraph (text mode)" },
+        { "name": "quote_text", "type": "textarea", "description": "Styled blockquote (text mode)" },
+        { "name": "btn_label",  "type": "text",     "description": "Button label (text mode)" },
+        { "name": "btn_url",    "type": "url",      "description": "Button link (text mode)" },
+        { "name": "image",      "type": "image",    "description": "Photo (3:4 ratio)" },
+        { "name": "image_side", "type": "select",   "options": ["left", "right"], "description": "Which side the image appears on" },
+        { "name": "accent",     "type": "select",   "options": ["rose", "fjord"], "description": "Accent color for eyebrow/quote border" },
+        { "name": "bg",         "type": "select",   "options": ["white", "cream"], "description": "Section background" },
+        { "name": "services",   "type": "repeater", "description": "Services (services mode only)", "sub_fields": [
+          { "name": "service_name",  "type": "text",     "description": "Service name" },
+          { "name": "service_desc",  "type": "textarea", "description": "Short description" },
+          { "name": "service_price", "type": "text",     "description": "Price" }
+        ]},
+        { "name": "contact_btn_label", "type": "text", "description": "Contact/booking button label (services mode)" },
+        { "name": "contact_btn_url",   "type": "url",  "description": "Contact/booking button link" },
+        { "name": "contact_extra",     "type": "text", "description": "Extra info beside button (e.g. phone number)" }
       ]
     }
   ]

@@ -1,7 +1,13 @@
 <?php
 /**
  * front-page.php — Homepage (auto-used by WordPress when a static front page is set).
- * Converts forside.jsx: HeroFullbleed + Signatur + Historie + Velvaere + KomInnom
+ *
+ * Recommended ACF block layout for this page:
+ *   1. acf/hero-section   (style: fullbleed — portrait photo, buttons, chips)
+ *   2. acf/card-grid      (cols: 3 — Signaturprodukter)
+ *   3. acf/two-column     (text mode, image left — Janetts historie with quote)
+ *   4. acf/two-column     (services mode, image right — Velværeavdelingen)
+ *   5. acf/cta            (Besøk oss — address, map button)
  */
 get_header();
 $img = get_template_directory_uri() . '/assets/images/';

@@ -97,6 +97,9 @@ function sjokoladerommet_bestill_kake() {
 // ─── FlowerMark SVG helper ────────────────────────────────────────────────────
 require_once get_template_directory() . '/template-parts/flower-mark.php';
 
+// ─── ACF Blocks ───────────────────────────────────────────────────────────────
+require_once get_template_directory() . '/inc/acf-blocks.php';
+
 // ─── Custom post type: Menyartikler (optional, for dashboard editing) ─────────
 add_action( 'init', function () {
     register_post_type( 'menyartikkel', [

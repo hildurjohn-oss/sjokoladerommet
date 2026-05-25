@@ -1,140 +1,185 @@
-# Sjokoladerommet — Block Patterns
+# Sjokoladerommet — ACF Custom Blocks
 
-10 reusable design sections for the WordPress block editor. Each pattern matches the site's visual design and can be inserted, rearranged, and edited without touching code.
+8 ACF-powered blocks for the WordPress block editor. Each block appears under the **Sjokoladerommet** category in the block inserter. All fields are editable in the block sidebar — no HTML editing required.
+
+## Requirements
+
+- **Advanced Custom Fields PRO** — Repeater fields require ACF Pro.
+- ACF Pro must be installed and activated before these blocks appear.
+
+---
 
 ## How to use
 
 1. Open any page in the WordPress editor
 2. Click **+ Add Block**
-3. Go to the **Patterns** tab
-4. Select **Sjokoladerommet** from the category list
-5. Click a pattern to insert it — the full section appears as editable blocks
+3. Search for a block name, or scroll to **Sjokoladerommet** in the category list
+4. Click the block to insert it
+5. Edit all content in the right-hand **sidebar panel** (no code editing needed)
 
 ---
 
-## Available patterns
+## Available blocks
 
-| Pattern | Slug | Best for |
-|---------|------|----------|
-| Hero – Enkel seksjon | `sjokoladerommet/hero-enkel` | Interior page headers (Meny, Om oss) |
-| Hero – Fullskjerm med bilde | `sjokoladerommet/hero-fullbleed` | Home page hero |
-| Tre kort – Signaturprodukter | `sjokoladerommet/favoritter-tre-kort` | Featured products section |
-| Tekst og bilde – Med sitat | `sjokoladerommet/tekst-og-bilde` | Story section with photo |
-| Tjenester og bilde | `sjokoladerommet/tjenester-og-bilde` | Wellness/services section |
-| CTA – Mørk bakgrunn | `sjokoladerommet/cta-mork` | Page-bottom call to action |
-| Menyliste – Kategori med priser | `sjokoladerommet/menyliste-seksjon` | One menu category |
-| Tidslinje | `sjokoladerommet/tidslinje` | Milestones / history |
-| Verdier – Fire-kolonne kortgrid | `sjokoladerommet/verdier-grid` | Core values or features |
-| Sitat – Stort sentrert | `sjokoladerommet/sitat-stor` | Closing quote |
+| Block | ID | Best for |
+|-------|----|----------|
+| Hero – Seksjon | `acf/hero-section` | Page heroes — two modes: simple header or fullbleed with photo |
+| Tekstseksjon | `acf/text-section` | Standalone heading + body text |
+| Menyliste | `acf/menu-list` | One menu category with items and prices |
+| Tidslinje | `acf/timeline` | Milestone/history timeline |
+| Kortgrid | `acf/card-grid` | 3- or 4-column image card grid |
+| Sitat | `acf/quote` | Large centered quote with attribution |
+| CTA – Mørk bakgrunn | `acf/cta` | Dark CTA section at the bottom of pages |
+| To kolonner – Bilde og tekst | `acf/two-column` | Photo + text, or photo + services list |
 
 ---
 
-## What you can edit visually (without switching to HTML)
+## Block details
 
-Most patterns expose these as standard Gutenberg blocks you can click and type into directly:
+### Hero – Seksjon (`acf/hero-section`)
 
-- **Eyebrow text** — small uppercase label above headings
-- **Headings** (H1, H2, H3) — click to retype
-- **Paragraphs** — body text and lead text
-- **Images** — click any image block → Replace → pick from media library
+Two layout modes selected in the sidebar:
 
-The patterns in `blocks-registry.json` list the exact editable blocks for each pattern.
+**Simple** — Centered H1 with eyebrow and lead text. Use on Meny, Om oss, Bestill kake.
 
----
+**Fullbleed** — Diagonal-stripe card with portrait photo, two buttons, and info chips. Use on the homepage.
 
-## Editing HTML-only elements
-
-Some elements use `wp:html` blocks because of complex or custom styling. To edit these:
-
-1. Click the HTML block in the editor
-2. Click the **three-dot menu (⋮)** in the block toolbar → **Edit as HTML** (or press `Ctrl+Shift+Alt+M`)
-3. Edit the raw HTML
-4. Click **Done** to return to visual view
-
-### Common HTML-only elements by pattern
-
-**Buttons** (in hero-fullbleed, tekst-og-bilde, cta-mork, tjenester-og-bilde):
-```html
-<a class="btn btn-primary" href="/meny/">Se menyen</a>
-```
-Change the `href` and the link text.
-
-**Info chips** (in hero-enkel, hero-fullbleed):
-```html
-<span class="chip fjord">★ Torsdag–søndag 11–16</span>
-<span class="chip">Gravdalsgata 15, Lofoten</span>
-```
-Edit text directly. `.chip.fjord` uses the blue-green color; `.chip` alone uses cream.
-
-**Menu items** (in menyliste-seksjon) — add a new item by duplicating a `<li>`:
-```html
-<li style="display:grid;grid-template-columns:1fr auto;gap:16px;align-items:baseline">
-  <div>
-    <div style="font-family:'Playfair Display',serif;font-weight:600;font-size:21px">Produktnavn</div>
-    <div class="muted" style="font-size:15px;margin-top:4px">Beskrivelse her.</div>
-  </div>
-  <div style="font-weight:700;color:var(--brun);white-space:nowrap;font-size:15px">32 kr/stk</div>
-</li>
-```
-
-**Timeline steps** (in tidslinje) — add a new step by duplicating a `<li>`:
-```html
-<li style="display:grid;grid-template-columns:68px 1fr;gap:28px;padding:22px 0;position:relative">
-  <div style="...">2025</div>
-  <div style="...">
-    <span style="..."></span><!-- dot marker -->
-    <h3>Steg tittel</h3>
-    <p class="muted" style="...">Beskrivelse av hva som skjedde.</p>
-  </div>
-</li>
-```
-
-**Services grid** (in tjenester-og-bilde) — edit price/name inside each `.card-soft` div.
+Fields:
+- **Style** — `simple` or `fullbleed`
+- **Eyebrow** — Short label above title
+- **Title** — H1 heading
+- **Lead** — 2–3 sentence intro
+- **Image** — Portrait photo (fullbleed only, 4:5 ratio recommended)
+- **Button 1 / Button 2** — Label and URL (fullbleed only)
+- **Chips** (repeater) — Info chips with text and color (`default` = cream, `fjord` = teal)
 
 ---
 
-## Building a full page with patterns
+### Tekstseksjon (`acf/text-section`)
+
+Generic centered or left-aligned content section.
+
+Fields:
+- **Eyebrow**, **Title** (H2), **Lead**, **Body**
+- **Accent** — `rose` or `fjord` (eyebrow color)
+- **Align** — `left` or `center`
+
+---
+
+### Menyliste (`acf/menu-list`)
+
+One menu category. Insert multiple times for Konfekt, Kaker, Drikke.
+
+Fields:
+- **Eyebrow**, **Title** (H2), **Accent** (FlowerMark color)
+- **Items** (repeater): Name, Description, Price, Signature badge (toggle)
+
+---
+
+### Tidslinje (`acf/timeline`)
+
+Vertical timeline with dot markers.
+
+Fields:
+- **Eyebrow**, **Title** (H2)
+- **Items** (repeater): Year, Step title (H3), Description
+
+---
+
+### Kortgrid (`acf/card-grid`)
+
+Responsive card grid.
+
+Fields:
+- **Eyebrow**, **Title** (H2)
+- **Cols** — `3` or `4` columns
+- **Background** — `white` or `cream`
+- **Cards** (repeater): Image, Ribbon badge, Card title (H3), Description
+
+---
+
+### Sitat (`acf/quote`)
+
+Large centered blockquote with FlowerMark.
+
+Fields:
+- **Quote** — Quote text (quotation marks added automatically)
+- **Citation** — Author/source
+- **Accent** — FlowerMark color
+- **Background** — `white` or `cream`
+
+---
+
+### CTA – Mørk bakgrunn (`acf/cta`)
+
+Dark brown section, always full-width. Use at the bottom of pages.
+
+Fields:
+- **Title** (white H2), **Body**
+- **Button 1 / Button 2** — Label and URL
+- **Address** — Small text below buttons
+
+---
+
+### To kolonner – Bilde og tekst (`acf/two-column`)
+
+Two-column layout. Select **Text mode** in the sidebar:
+
+**Text mode** — Photo + eyebrow, heading, lead, body, optional quote, button.
+
+**Services mode** — Photo + services grid (name, description, price per service), booking button, optional extra text (e.g. phone number).
+
+Fields:
+- **Text mode** — `text` or `services`
+- **Eyebrow**, **Title** (H2), **Lead**, **Body**
+- **Quote text** (text mode), **Button label/URL** (text mode)
+- **Image**, **Image side** (`left` or `right`)
+- **Accent**, **Background**
+- **Services** (repeater, services mode): Service name, Description, Price
+- **Contact button** label/URL + extra text (services mode)
+
+---
+
+## Building a full page
 
 ### Forside (homepage)
-1. Hero – Fullskjerm med bilde
-2. Tre kort – Signaturprodukter
-3. Tekst og bilde – Med sitat *(Janetts historie)*
-4. Tjenester og bilde *(Velværeavdelingen)*
+1. Hero – Seksjon (fullbleed)
+2. Kortgrid (3 cols) — Signaturprodukter
+3. To kolonner – Janetts historie (text mode, image left)
+4. To kolonner – Velværeavdelingen (services mode, image right)
 5. CTA – Mørk bakgrunn
 
 ### Meny
-1. Hero – Enkel seksjon
-2. Menyliste *(Konfekt & sjokolade)*
-3. Menyliste *(Kaker)* — insert again, then edit the HTML to change category title + items
-4. Menyliste *(Kaffe & drikke)*
-5. CTA – Mørk bakgrunn *(or Sitat – Stort sentrert)*
+1. Hero – Seksjon (simple)
+2. Menyliste — Konfekt & sjokolade
+3. Menyliste — Kaker
+4. Menyliste — Kaffe & drikke
+5. CTA – Mørk bakgrunn
 
 ### Om oss
-1. Hero – Enkel seksjon
+1. Hero – Seksjon (simple)
 2. Tidslinje
-3. Verdier – Fire-kolonne kortgrid
-4. Tjenester og bilde
+3. Kortgrid (4 cols, cream bg) — Verdier
+4. To kolonner – Velværeavdelingen (services mode)
 5. Sitat – Stort sentrert
 
 ---
 
 ## CSS design tokens
 
-All patterns use these variables from `assets/css/main.css`. You can reference them in inline styles or custom HTML:
-
 ```css
---brun: #3B1A0E          /* Chocolate brown — main text */
---brun-soft: #5a2e1f     /* Lighter brown — muted text */
---krem: #FAF5EE          /* Cream white — page background */
---krem-deep: #F2EADD     /* Deep cream — section backgrounds */
---fjord: #C5E5E7         /* Fjord teal — chip backgrounds */
---fjord-deep: #9bcfd2    /* Deep teal — eyebrow accents */
---accent: #E8A0AF        /* Rose pink */
+--brun:        #3B1A0E   /* Chocolate brown — main text */
+--brun-soft:   #5a2e1f   /* Lighter brown — muted text */
+--krem:        #FAF5EE   /* Cream white — page background */
+--krem-deep:   #F2EADD   /* Deep cream — section backgrounds */
+--fjord:       #C5E5E7   /* Fjord teal — chip backgrounds */
+--fjord-deep:  #9bcfd2   /* Deep teal — eyebrow accents */
+--accent:      #E8A0AF   /* Rose pink */
 --accent-deep: #d27d8e   /* Deep rose — buttons, borders */
 --accent-soft: #f5d4da   /* Soft rose — hover states */
 ```
 
-## Button classes
+## Button classes (usable in Custom HTML blocks)
 
 ```html
 <a class="btn btn-primary" href="...">Primary (rose)</a>
@@ -142,28 +187,3 @@ All patterns use these variables from `assets/css/main.css`. You can reference t
 <a class="btn btn-ghost"   href="...">Ghost (no border)</a>
 <a class="btn btn-accent"  href="...">Accent (used on dark bg)</a>
 ```
-
----
-
-## Custom CSS classes used by patterns
-
-| Class | Description |
-|-------|-------------|
-| `.cols-2` | 2-column CSS grid, collapses at 820px |
-| `.cols-3` | 3-column grid, 2-col at 820px, 1-col at 560px |
-| `.cols-4` | 4-column grid, 2-col at 820px, 1-col at 560px |
-| `.hero-forside` | Striped diagonal background card (homepage hero) |
-| `.section` | Full vertical padding section |
-| `.section.tight` | Reduced padding section |
-| `.wrap` | Max-width constrained, centered container |
-| `.card` | White card with border, radius, shadow |
-| `.card-soft` | Cream card, lighter style |
-| `.brun-bg` | Dark brown background (used in CTA) |
-| `.eyebrow` | Small uppercase label with leading line |
-| `.lead` | Larger intro paragraph text |
-| `.muted` | Secondary/muted brown text color |
-| `.handwrite` | Italic Playfair Display (signature style) |
-| `.chip` | Small tag/badge |
-| `.chip.fjord` | Tag with teal background |
-| `.ribbon` | Accent ribbon label on cards |
-| `.velvare-services` | 2-column services grid |

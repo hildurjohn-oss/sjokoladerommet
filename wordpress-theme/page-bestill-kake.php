@@ -1,7 +1,11 @@
 <?php
 /**
  * Template Name: Bestill kake
- * Converts bestill-kake.jsx — multi-step order form (vanilla JS, no React)
+ *
+ * Recommended ACF block layout for this page:
+ *   1. acf/hero-section  (style: simple — Bestill kake heading + lead)
+ *   (The order form below is hardcoded PHP — not a block)
+ *   2. acf/cta           (optional bottom CTA / contact info)
  */
 get_header();
 ?>
